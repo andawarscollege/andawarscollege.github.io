@@ -1,0 +1,74 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Submitted Forms</h1>
+    </header>
+
+    <div class="container" id="form-data-container">
+        <!-- Form data will be displayed here dynamically -->
+    </div>
+
+    <!-- Accept Button -->
+    <button id="accept-button">Accept</button>
+
+    <script>
+        // Function to display form data from localStorage
+        function displayFormData() {
+            const formDataContainer = document.getElementById('form-data-container');
+            const formDataString = localStorage.getItem('formData');
+            const formData = JSON.parse(formDataString);
+
+            if (formData) {
+                const formDataElement = document.createElement('div');
+                formDataElement.className = 'form-data';
+
+                formDataElement.innerHTML = `
+                    <h2>${formData['full-name']}</h2>
+                    <p><strong>Email:</strong> ${formData['email']}</p>
+                    <p><strong>Phone:</strong> ${formData['phone']}</p>
+                    <p><strong>Field of Interest:</strong> ${formData['field-of-interest']}</p>
+                    <p><strong>Graduate School:</strong> ${formData['graduate-school']}</p>
+                    <p><strong>Message:</strong> ${formData['message']}</p>
+                `;
+
+                formDataContainer.appendChild(formDataElement);
+            } else {
+                const noDataElement = document.createElement('p');
+                noDataElement.textContent = 'No form data available.';
+                formDataContainer.appendChild(noDataElement);
+            }
+        }
+
+        // Function to handle the "Accept" button click
+        function handleAcceptClick() {
+            // You can add code here to perform actions when the "Accept" button is clicked.
+            // For example, running the "mailer.js" script.
+
+            // Load and execute the "mailer.js" script
+            const script = document.createElement('script');
+            script.src = 'downloadjson.js';
+            document.body.appendChild(script);
+        }
+
+        // Call the function to display form data
+        displayFormData();
+
+        // Add click event listener to the "Accept" button
+        const acceptButton = document.getElementById('accept-button');
+        if (acceptButton) {
+            acceptButton.addEventListener('click', handleAcceptClick);
+        }
+    </script>
+</body>
+</html>

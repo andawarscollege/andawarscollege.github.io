@@ -1,0 +1,58 @@
+<!-- formsubmitted.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submitted</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            background-color: lightblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Candara', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .message {
+            color: #000;
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Form Submitted</h1>
+    </header>
+
+    <div class="container">
+        <!-- Message will be displayed here dynamically -->
+    </div>
+
+    <script src="accept.js"></script>
+    <script>
+        // Function to change the text when receiving a message from accept.js
+        function changeText(message) {
+            const messageContainer = document.querySelector('.container');
+            if (messageContainer) {
+                const messageElement = document.createElement('p');
+                messageElement.textContent = message;
+                messageContainer.appendChild(messageElement);
+            }
+        }
+
+        // Check if there's a message sent by accept.js
+        if (window.opener && window.opener.postMessageToFormSubmitted) {
+            window.opener.postMessageToFormSubmitted(changeText);
+        }
+    </script>
+</body>
+</html>
+

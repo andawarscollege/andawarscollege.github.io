@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pin-input {
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .login-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>PIN Login</h2>
+        <input type="password" class="pin-input" placeholder="Enter PIN" id="pin">
+        <button class="login-button" onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            const enteredPIN = document.getElementById('pin').value;
+            const correctPIN = '2011';
+    
+            if (enteredPIN === correctPIN) {
+                // Redirect to "admin.html" upon successful login
+                window.location.href = 'admin.html';
+            } else {
+                alert('Incorrect PIN. Please try again.');
+                // You can clear the PIN input field here.
+                document.getElementById('pin').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
